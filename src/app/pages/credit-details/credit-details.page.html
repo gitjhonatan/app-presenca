@@ -1,0 +1,148 @@
+<ion-header>
+    <div class="header-menu">
+        <div class="custom-toolbar">
+            <ion-menu-button></ion-menu-button>
+            <div class="logo-top">
+                <img src="./assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" routerLink="/home" routerDirection="forward">
+                <img src="./assets/icons/icon-home.svg">
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()" pullMax="500">
+        <ion-refresher-content class="black" pullingIcon="arrow-round-down" refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <!-- <div *ngIf="total.int != '0'"> -->
+    <div *ngIf="!lock">
+
+        <div class="custom-card product" *ngIf="total.int != '0' ">
+            <div class=" item" *ngFor="let p of products" [hidden]="p.value.int==0">
+                <div class="card-title" (click)="presentPopover($event, p)">
+                    <span>{{p.name}}</span>
+                    <ion-icon *ngIf="total.int!='0'" class="help-icon" color='primary' name="help-circle-outline">
+                    </ion-icon>
+                </div>
+                <div class="card-money" (click)="presentPopover($event, p)">R$
+                    <span class="int-money">{{p.value.int}}</span>,{{p.value.cents}}
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-card total" *ngIf="total.int != '0'">
+            <div class=" card-title" (click)="presentPopover($event, {name:'total'})">
+                <span *ngIf="total.int!='0'">Crédito Total </span>
+                <ion-icon *ngIf="total.int!='0'" class="help-icon" color='primary' name="help-circle-outline">
+                </ion-icon>
+            </div>
+            <div class="card-money" (click)="presentPopover($event, {name:'total'})">R$
+                <span class="int-money">{{total?.int}}</span>,{{total?.cents}}
+            </div>
+            <div id="button-final" class="card-button" (click)="pushPage($event)">
+                Veja detalhes com especialista
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-card product nothing-found" *ngIf="total.int == '0' && !lock">
+        <img src="../../../assets/unDraw/searching.svg">
+        <p>
+            Infelizmente não conseguimos disponibilizar Crédito Consignado para você, neste momento.
+        </p>
+        <p>
+            Mas não se preocupe, ainda queremos te ajudar!
+        </p>
+
+    </div>
+
+    <div class="options-card" *ngIf="total.int == '0'  && !lock">
+        <h4>
+            Temos 2 opções agora:
+        </h4>
+        <div class="options">
+            <div class="option" style="margin-right: 5px" routerLink="/home" routerDirection="root">
+                <p>
+                    Ser avisado AUTOMATICAMENTE quando tiver margem
+                    disponível para você.
+                </p>
+                <button>Ativar Notificações
+                </button>
+            </div>
+            <div class="option" style="margin-left: 5px" routerLink="/debito" routerDirection="root">
+                <p>
+                    Consultar outras linhas de crédito, como Débito em Conta ou Crédito
+                    com Garantia.
+                </p>
+                <button>Consultar Crédito
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="lock" class="custom-card product lock">
+        <p> <strong> OPS! <br> Parece que você ainda não desbloqueou a consulta de margem </strong></p>
+        <ion-img src="../assets/img/lock.svg"></ion-img>
+
+        <p>No vídeo abaixo há instruções para o desbloqueio:</p>
+
+        <p class="lock-grey"> Detalhe: Você pode desbloquear para realizarmos essa consulta, e depois você pode voltar a
+            bloquear caso
+            prefira.
+        </p>
+
+        <!-- <a href="https://www.youtube.com/watch?v=XVkdCKn-6VE&feature=youtu.be" target="_blank"> -->
+        <a [href]="url.unlock" target="_blank">
+            <ion-img src="../assets/img/video.png"> </ion-img>
+        </a>
+
+        <p>Caso seja o seu primeiro acesso ao portal da prefeitura:</p>
+
+        <a [href]="url.first" target="_blank">
+            <ion-img src="../assets/img/video.png"> </ion-img>
+        </a>
+
+        <p>Após realizar o desbloqueio, clique aqui para simular:</p>
+
+        <div class="card-button" (click)="pushPage($event)" id="simulateAgain">
+            Simular Empréstimo
+        </div>
+
+    </div>
+
+    <div class="out" *ngIf="lock">
+        <p class="lock-grey" id="mt">Ainda com dificuldades? <br> Clique abaixo para falar com um de nossos atendentes
+        </p>
+        <ion-button expand="full" fill="clear" id="vitoria" (click)="pushPage($event)" routerDirection="forward">
+            Falar com Atendente
+        </ion-button>
+    </div>
+
+    <div class="card-salary-increase" *ngIf="total.int != '0' && !lock && banner" (click)="pushPage($event)"
+        routerDirection="forward">
+        <div class="content-salary-increase">
+            <div class="image-salary-increase">
+                <img src="./assets/img/happy-person.png">
+            </div>
+            <div class="text-salary-increase">
+                <div class="anticipate">
+                    LIBERAÇÃO IMEDIATA
+                </div>
+                <div class="salary-increase">
+                    Receba seu dinheiro ainda hoje!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ion-button *ngIf="!lock" expand="full" fill="clear" routerLink="/home" routerDirection="forward">
+        Voltar
+    </ion-button>
+
+</ion-content>

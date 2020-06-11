@@ -1,0 +1,98 @@
+<ion-header>
+    <div class="header-menu">
+        <div class="custom-toolbar">
+            <ion-menu-button></ion-menu-button>
+            <div class="logo-top">
+                <img src="./assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" routerLink="/home" routerDirection="forward">
+                <img src="./assets/icons/icon-home.svg">
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <ion-card *ngFor="let p of contractsData;index as i">
+        <ion-card-header>
+
+            <div id="status" class="line">
+                <ion-label>{{p.statusDescription}}</ion-label>
+            </div>
+
+            <div class="infos">
+                <ion-icon name="information-circle"></ion-icon>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content>
+            <div class="up col">
+                <div class="left">
+                    <div class="value-large">
+                        {{currency(p.receivedValue)}}
+                    </div>
+                    <div class="value-small">
+                        {{p.productType}}
+                    </div>
+                </div>
+
+                <div class="right">
+                    <ion-img src="../assets/img/logo-card.svg"></ion-img>
+                </div>
+            </div>
+
+            <div class="down col">
+                <div class="left">
+                    <div id="date_sale" class="line">
+                        <div class="value-small">
+                            Data da venda:
+                        </div>
+                        <div class="value-large">
+                            20/02/2020
+                            <!-- {{p.saleDate}} -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div id="date_sale" class="line">
+                        <div class="value-small">
+                            Consultor:
+                        </div>
+                        <div class="value-large">
+                            Jhonatan Lima
+                            <!-- {{p.saleDate}} -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </ion-card-content>
+
+        <div id="details" [class.collapsed]="p.collapsed" (click)="expandThis(p, i)">
+
+      
+        </div>
+    </ion-card>
+
+    <div *ngIf="contractsData.length==0" class="center">
+        <div class="container">
+            <img src="assets\unDraw\empty.svg">
+            <p>
+                Hum, parece que você não tem nenhum contrato com a gente. Que tal começar fazendo uma simulação, sem
+                compromisso?
+            </p>
+            <div class="buttons">
+                <ion-button class="come-back" fill="clear" routerLink="/home" routerDirection="foward">
+                    Voltar
+                </ion-button>
+                <ion-button class="simulate" routerLink="/simulator" routerDirection="foward">
+                    Fazer simulação
+                </ion-button>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

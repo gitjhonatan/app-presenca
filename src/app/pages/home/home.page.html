@@ -1,0 +1,145 @@
+<ion-content>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()" pullMax="500">
+        <ion-refresher-content class="black" pullingIcon="arrow-round-down" refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <div class="header-menu" [class.non]="userInfo?.cpf || hasMargin">
+        <div class="custom-toolbar">
+            <div>
+                <ion-menu-button></ion-menu-button>
+            </div>
+            <div class="logo-top">
+                <img src="../../../assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" (click)="openNotifications()">
+                <img src="../../../assets/icons/icon-notification.svg">
+                <ion-badge color="danger" *ngIf="pushCount>0">{{pushCount}}</ion-badge>
+            </div>
+        </div>
+        <div class="greeting div">
+            <div>
+                <div class="greeting-container" *ngIf="first_name" (click)="pushPage('/update_user_infos',{})">
+                    <div class="named-greeting">
+                        <div class="greeting">
+                            {{greeting}},
+                        </div>
+                        <div class=name>
+                            {{first_name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="cpf" *ngIf="userInfo?.cpf || hasMargin" (click)="pushPage('/update_user_infos',{})">
+                    CPF: {{userInfo?.cpf?userInfo?.cpf:'•••••••••••'}}
+                </div>
+                <div class="non-named-greeting" *ngIf="!first_name">
+                    <div class="greeting">
+                        {{greeting}}
+                    </div>
+                    <div class="ask-cpf" *ngIf="!userInfo?.cpf" (click)="pushPage('/simulator',{})">
+                        Simular empréstimo
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="chat" routerLink="/attendance" routerDirection="foward">
+                <ion-icon mode="ios" name="chatboxes"></ion-icon>
+            </div> -->
+        </div>
+
+        <div class="custom-card margin" (click)="pushPage('menu',{},$event)" [class.non]="userInfo?.cpf || hasMargin">
+            <div class="card-title">
+                <span *ngIf="userInfo?.cpf || hasMargin">Crédito Disponível</span>
+                <span *ngIf="!userInfo?.cpf && !hasMargin">Consultar crédito disponível</span>
+            </div>
+            <div class="card-money">
+                <div id="money-container" #valueCredit>
+                    <span *ngIf="!userInfo?.cpf && !hasMargin">
+                        <span class="from">a partir de</span><br>R$
+                        <span class="int-money">1.000</span>,00
+                    </span>
+                    <span *ngIf="userInfo?.cpf || hasMargin">R$
+                        <span class="int-money">{{value.int}}</span>,{{value.cents}}
+                    </span>
+                </div>
+                <img #spinner class="spinner hidden" src="./assets/icons/spinner.svg">
+            </div>
+            <div class="card-button" *ngIf="(userInfo?.cpf || hasMargin) && !lock">
+                RESGATAR CRÉDITO • Liberação em até 48h
+            </div>
+            <div class="card-button" *ngIf="(!userInfo?.cpf && !hasMargin) || lock">
+                CONSULTE AQUI • Liberação em até 48h
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-card card-salary-increase" (click)="pushPage('/attendance',{data:'margem'})">
+    <!-- <div class="custom-card card-salary-increase" (click)="checkHour()"> -->
+        <div class="content-salary-increase">
+            <div class="image-salary-increase">
+                <img src="./assets/img/icon-banner-mulher.png">
+            </div>
+            <div class="text-salary-increase">
+                <div class="anticipate">
+                    REFINANCIE EM 84X
+                </div>
+                <div class="salary-increase">
+                    não perca tempo!
+                </div>
+                <div class="click">
+                    Clique aqui e fale com um especialista!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-card shortcuts">
+        <ion-row>
+            <ion-col class="shortcuts-card" *ngFor="let p of shortcuts; let i = index"
+                (click)="pushPage(p.link,p.data)">
+                <div class="icon-shortcut">
+                    <img class="icon-menu" [src]="p.img">
+                </div>
+                <div class="shortcuts-text">
+                    {{p.text}}
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <!-- <ion-slides pager="false" [options]="newsOptions" class="news">
+        <ion-slide *ngFor="let p of news" class="news">
+            <ion-card mode="ios" [href]="p.url" target="_blank" >
+                <ion-card-header >
+                    <img [src]="p.img" >
+                </ion-card-header>
+                <ion-card-content class="news">
+                    <h2 >{{p.title}}</h2>
+                    <p>{{p.date}}</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+	</ion-slides> -->
+
+    <div class="custom-card">
+        <div>
+            <div class="rating-title">
+                Avaliações dos nossos clientes
+            </div>
+            <ion-slides pager="true" [options]="ratingOptions" class="rating">
+                <ion-slide *ngFor="let p of rating" class="rating">
+                    <ion-card-content>
+                        <div class="rating-text">
+                            {{p.rate}}
+                        </div>
+                        <div class="rating-client">
+                            <img [src]="p.photo">
+                            <div class="client-infos">{{p.name}}<span class="client-city">{{p.city}}</span></div>
+                        </div>
+                    </ion-card-content>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+
+</ion-content>

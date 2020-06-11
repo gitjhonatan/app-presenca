@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "presenca-promotora",
+    "app-presenca": "app-credito-familiar",
+    "app-credito-familiar": "app-credito-familiar"
+  }
+}

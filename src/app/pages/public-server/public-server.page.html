@@ -1,0 +1,128 @@
+<ion-header no-border>
+  <div class="header-menu">
+    <div class="custom-toolbar">
+      <ion-menu-button></ion-menu-button>
+      <div class="logo-top">
+        <img src="./assets/img/logo-top.svg">
+      </div>
+      <div class="icon-option" routerLink="/home" routerDirection="forward">
+        <img src="./assets/icons/icon-home.svg">
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-slides #slides [options]="slideOpts">
+
+    <ion-slide>
+      <div class="center">
+        <div class="container">
+          <div class="title">
+            Qual o seu nome?
+          </div>
+          <div class="custom-input">
+            <ion-input placeholder="Digite aqui" [(ngModel)]="userInfos.name" name="full_name" type="text">
+            </ion-input>
+          </div>
+          <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+            Voltar<ion-ripple-effect></ion-ripple-effect>
+          </button>
+          <button [disabled]="!userInfos?.name" class="custom-buttom ion-activatable" (click)="slideNext()">
+            Próximo<ion-ripple-effect></ion-ripple-effect>
+          </button>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="center">
+        <div class="container">
+          <div class="title">
+            Qual o seu CPF?
+          </div>
+          <div class="custom-input">
+            <ion-input #cpfInput placeholder="Digite aqui" [disabled]="!editCPF" [(ngModel)]="userInfos.cpf" name="cpf"
+              type="text" (ionInput)="testCPF($event)" [brmasker]="{mask: '000.000.000-00', type:'num', len:14}"
+              (click)="hideThing()" (change)="hideThing()">
+            </ion-input>
+            <!-- [disabled]="!editCPF" -->
+
+            <ion-text>
+              <p [hidden]="!cpfIncomplete || !submitted || cpfIsValid" class="ion-padding-start">
+                Por favor, insira o seu CPF
+              </p>
+              <p [hidden]="cpfIsValid || cpfIncomplete" class="ion-padding-start">
+                Por favor, insira um CPF válido
+              </p>
+            </ion-text>
+
+
+            <!-- *ngIf="!userInfos?.cpf" -->
+          </div>
+          <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+            Voltar<ion-ripple-effect></ion-ripple-effect>
+          </button>
+          <button [disabled]="cpfIncomplete || !cpfIsValid" class="custom-buttom ion-activatable"
+            (click)="checkMargin(userInfos)">
+            Próximo<ion-ripple-effect></ion-ripple-effect>
+          </button>
+
+          <div class="why-cpf" id="why-cpf" (click)="presentPopover($event,'why-cpf')">
+            <div class="help-icon">
+              <ion-icon color='light' name="help-circle">
+              </ion-icon>
+            </div>
+            Porquê pedimos seu CPF?
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="center">
+        <div class="container">
+          <div class="title up">
+            Um momento...
+          </div>
+          <div class="subtitle">
+            Estamos efetuando a sua simulação, esta operação pode demorar até 120 segundos.
+          </div>
+          <img class="spinner" src="../../../assets/icons/spinner-white.svg">
+
+          <div classe="ratEdit">
+
+
+
+
+            <ion-slides pager="true" [options]="ratingOptions" class="rating">
+              <ion-slide *ngFor="let p of rating" class="rating">
+                <ion-card-content>
+                  <img style="max-width: 230px !important;" [src]="p.image">
+
+                  <div class="rating-text">
+
+                  </div>
+
+                  <div class="rating-text" style="text-align: center;">
+                    APP PRESENÇA<br><br>
+                    {{p.rate}}
+                  </div>
+                  <!-- <div class="rating-client">
+                    <img [src]="p.photo">
+                    <div class="client-infos">{{p.name}}<span class="client-city">{{p.city}}</span></div>
+                  </div> -->
+                </ion-card-content>
+              </ion-slide>
+            </ion-slides>
+
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+
+  </ion-slides>
+
+</ion-content>

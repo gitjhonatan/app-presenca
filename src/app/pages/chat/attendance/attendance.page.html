@@ -1,0 +1,58 @@
+<ion-header no-border>
+    <div class="header-menu pages">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+            </ion-buttons>
+            <ion-title>Atendimento</ion-title>
+            <ion-buttons slot="end">
+                <ion-button routerLink="/home" routerDirection="root">
+                    <ion-icon name="home"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </div>
+</ion-header>
+
+<ion-content fullscreen>
+    <div class="embed" *ngIf="startChat">
+        <iframe name="framename" [src]="url" class="embed" frameborder="0"></iframe>
+    </div>
+    <div class="embed" *ngIf="informName">
+        <form #updateForm="ngForm" novalidate>
+            <ion-list lines="none">
+
+                <ion-item style="text-align: center">
+                    <ion-label color="primary" mode="ios" position="stacked">Como podemos te chamar?
+                    </ion-label>
+                    <ion-input [(ngModel)]="userInfos.name" name="name" type="text" placeholder="Digite seu nome" required>
+                    </ion-input>
+                </ion-item>
+                <ion-text color="danger">
+                    <p [hidden]="userInfos?.name || !submitted">
+                        Por favor, insira o seu nome
+                    </p>
+                </ion-text>
+
+                <ion-item style="text-align: center">
+                    <ion-label color="primary" mode="ios" position="stacked">Qual o seu CPF?</ion-label>
+                    <ion-input [disabled]="!editCPF" id="CPFinput" [(ngModel)]="userInfos.cpf" name="cpf" (ionInput)="testCPF()" type="text" [brmasker]="{mask: '000.000.000-00', type:'num', len:14}" required placeholder="Digite seu CPF">
+                    </ion-input>
+                </ion-item>
+                <ion-text color="danger">
+                    <p [hidden]="!cpfIncomplete || !submitted || cpfIsValid" class="ion-padding-start">
+                        Por favor, insira o seu CPF
+                    </p>
+                    <p [hidden]="cpfIsValid || cpfIncomplete" class="ion-padding-start">
+                        Por favor, insira um CPF válido
+                    </p>
+                </ion-text>
+
+            </ion-list>
+            <div class="ion-padding">
+                <ion-button (click)="onSendInfos(updateForm)" type="submit" expand="block"><span>Continuar</span>
+                </ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>

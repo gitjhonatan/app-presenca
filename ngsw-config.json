@@ -1,0 +1,44 @@
+{
+    "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+    "index": "/index.html",
+    "assetGroups": [{
+            "name": "app",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/favicon.ico",
+                    "/index.html",
+                    "/*.css",
+                    "/*.js"
+                ]
+            }
+        },
+        {
+            "name": "assets",
+            "installMode": "prefetch",
+            "resources": {
+                "files": [
+                    "/assets/**",
+                    "/svg/md-chatbubbles.svg",
+                    "/svg/md-close.svg",
+                    "/svg/md-home.svg",
+                    "/svg/md-calculator.svg",
+                    "/svg/md-people.svg",
+                    "/svg/md-create.svg",
+                    "/svg/md-menu.svg",
+                    "/svg/md-arrow-round-down.svg",
+                    "/svg/ios-chatbubbles.svg",
+                    "/svg/ios-close.svg",
+                    "/svg/ios-home.svg",
+                    "/svg/ios-calculator.svg",
+                    "/svg/ios-people.svg",
+                    "/svg/ios-create.svg",
+                    "/svg/ios-menu.svg",
+                    "/svg/videocam.svg",
+                    "/images/**",
+                    "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+                ]
+            }
+        }
+    ]
+}

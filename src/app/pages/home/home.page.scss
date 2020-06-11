@@ -1,0 +1,259 @@
+$primary-color: #005468;
+$secondary-color:#be5000;
+$grey:#7c7c7c;
+$white:#fff;
+$gradient:linear-gradient(90deg, #be4e00, #e19505);
+.menu {
+    text-align: center;
+    color: $primary-color;
+    line-height: 18px;
+    font-weight: 600;
+    font-size: 16px;
+    ;
+    text-transform: none;
+}
+
+.rating-title {
+    padding-top: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rating-text {
+    text-align: justify;
+    margin-bottom: 8px;
+    color: $grey;
+}
+
+.rating-client {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    justify-items: left;
+    font-size: 18px;
+    margin-bottom: 20px;
+    img {
+        border-radius: 50%;
+        width: 49px;
+    }
+    .client-infos {
+        display: grid;
+        .client-city {
+            font-size: 12px;
+            justify-self: left;
+            line-height: 8px;
+        }
+    }
+}
+
+.no-padding-bottom {
+    padding-bottom: 0;
+}
+
+.card-salary-increase {
+    background-image: $gradient;
+    height: 76px;
+    .content-salary-increase {
+        display: flex;
+        justify-content: center;
+        .image-salary-increase {
+            max-width: 101px;
+            position: relative;
+            height: 74px;
+            width: 100%;
+            margin-right: -8px;
+            img {
+                position: absolute;
+                bottom: -3px;
+            }
+        }
+        .text-salary-increase {
+            color: $white;
+            padding-top: 8px;
+            .anticipate {
+                font-size: 20px;
+                font-weight: 600;
+                img {
+                    width: 28px;
+                }
+            }
+            .salary-increase {
+                display: flex;
+                font-size: 15px;
+                .year {
+                    font-weight: 500;
+                    font-size: 36px;
+                    line-height: 0px;
+                    margin-left: 7px;
+                }
+            }
+            .click {
+                font-weight: 400;
+                text-transform: uppercase;
+                font-size: 10px;
+                margin: 6px 0;
+            }
+        }
+    }
+}
+
+.greeting {
+    // &.div {
+    //     display: grid;
+    //     grid-template-columns: 1fr 90px;
+    // }
+    .chat {
+        justify-self: right;
+        align-self: center;
+        font-size: 37px;
+    }
+    .greeting-container {
+        margin-top: 13px;
+        .named-greeting {
+            font-size: 18px;
+            display: flex;
+            .name {
+                font-weight: 600;
+                font-size: 20px;
+                margin-left: 5px;
+                line-height: 20px;
+            }
+        }
+    }
+    .non-named-greeting {
+        display: grid;
+        grid-auto-flow: column;
+        .greeting {
+            font-size: 18px;
+            ;
+            font-weight: 500;
+            align-self: center;
+        }
+        .ask-cpf {
+            text-transform: uppercase;
+            font-weight: 300;
+            font-size: 15px;
+            border: 1px solid;
+            padding: 5px 10px;
+            border-radius: 7px;
+            justify-self: end;
+            cursor: pointer;
+        }
+    }
+    .cpf {
+        font-weight: 300;
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
+
+.custom-card {
+    text-align: left;
+    display: block;
+    &.margin {
+        margin: 0 -10px;
+        height: 143px;
+        text-align: center;
+        display: grid;
+        justify-items: center;
+    }
+    &.non {
+        height: 110px;
+    }
+    &.shortcuts {
+        padding: 10px;
+    }
+    .card-title {
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .card-money {
+        color: $secondary-color;
+        display: flex;
+        .from {
+            font-size: 16px;
+            font-weight: 400;
+        }
+    }
+    .card-button {
+        font-size: 12px;
+        padding: 10px;
+    }
+    .shortcuts-card {
+        padding: 9px 10px;
+        text-align: center;
+        margin: 5px;
+        color: $primary-color;
+        font-size: 14px;
+        display: grid;
+        justify-items: center;
+        min-width: 100px;
+        min-height: 100px;
+        .icon-shortcut {
+            width: 70px;
+            .shortcuts-text {
+                height: 20px;
+            }
+            img {
+                height: 52px;
+                margin: -1px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+div.header-menu {
+    height: 205px;
+    margin-bottom: 127px;
+    padding: 25px 20px 0;
+    &.non {
+        margin-bottom: 110px;
+    }
+    .custom-toolbar {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width:340px) {
+    .image-salary-increase {
+        width: 0!important;
+        margin-left: 0!important;
+    }
+}
+
+.spinner {
+    height: 41px;
+    transition: transform 0.5s;
+}
+
+#money-container {
+    transition: transform 0.5s;
+}
+
+.hidden {
+    transform: scale(0);
+    position: fixed;
+    top: 100vh;
+}
+
+.news {
+    ion-card {
+        background-color: #fff;
+        ion-card-header {
+            padding: 20px;
+            img {
+                max-height: 200px;
+                border-radius: 3px;
+                margin: auto;
+            }
+        }
+        h2 {
+            color: #000;
+        }
+    }
+}
+
+.greeting.div {
+    margin: 20px 0;
+}

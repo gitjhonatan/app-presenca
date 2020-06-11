@@ -1,0 +1,25 @@
+.container {
+    padding: 0 10px;
+}
+
+p {
+    text-align: center;
+}
+
+.buttons {
+    display: grid;
+    padding: 0 10px 10px;
+    row-gap: 10px;
+    button {
+        background-color: transparent;
+        border: 1px solid;
+        border-radius: 7px;
+        padding: 10px;
+        color: #393939;
+        &#inform {
+            background: #005468;
+            color: #fff;
+            border: none;
+        }
+    }
+}

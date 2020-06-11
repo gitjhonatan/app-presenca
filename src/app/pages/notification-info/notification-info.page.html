@@ -1,0 +1,28 @@
+<ion-header>
+    <div class="header-menu pages">
+        <ion-toolbar>
+            <ion-title class="correct-left-margin">Notificações</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </div>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="container-image" (click)="openUrl(not.clique_imagem)">
+        <img *ngIf="not?.image" [src]="not?.image">
+    </div>
+    <h2>
+        <strong>{{not?.title}}</strong>
+    </h2>
+    <p>
+        {{not?.body}}
+    </p>
+    <ion-footer>
+        <ion-datetime displayFormat="DD de MMMM de YYYY HH:mm" [value]="not?.date" disabled="true" monthNames="janeiro, fevereiro, março, abril, maio, junho, julho, agosto, setembro, outubro, novembro, dezembro">
+        </ion-datetime>
+    </ion-footer>
+</ion-content>

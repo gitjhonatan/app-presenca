@@ -1,0 +1,37 @@
+<ion-header no-border>
+  <div class="header-menu">
+    <div class="custom-toolbar">
+      <ion-menu-button></ion-menu-button>
+      <div class="logo-top">
+        <img src="./assets/img/logo-top.svg">
+      </div>
+      <div class="icon-option" routerLink="/home" routerDirection="forward">
+        <img src="./assets/icons/icon-home.svg">
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="custom-card">
+    <ion-img src="../assets/img/error.svg "></ion-img>
+    <div class="textUp">
+      <p>Ops!<br>
+        Algo deu errado<br>
+        Tente novamente em alguns minutos.
+      </p>
+    </div>
+    <div class="textSmall">
+      <p>
+        Persistindo o erro, fale com um de nossos <br>
+        especialistas através do telefone <br>
+        <a href="tel:0800 591 6021" id="up"> 0800 591 6021</a>
+
+      </p>
+    </div>
+
+    <div id="button-final" class="card-button" routerLink="/home" routerDirection="root">
+      Voltar ao Início
+    </div>
+  </div>
+</ion-content>

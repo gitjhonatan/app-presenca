@@ -1,0 +1,58 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button color='light' (click)="startApp()" [hidden]="!showSkip">Pular
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-footer no-border>
+    <ion-toolbar>
+        <img (click)="nextPage()" src="assets/img/buttonNext.png" class="slide-image nextButton" [hidden]="!showSkip" />
+        <img (click)="startApp()" src="assets/img/buttonFinal.png" class="slide-image nextButton" [hidden]="showSkip" />
+    </ion-toolbar>
+</ion-footer>
+<ion-content fullscreen>
+    <div>
+        <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+
+            <ion-slide>
+                <img src="assets/img/ica-slidebox-img-1.png" class="slide-image" />
+                <h2 class="slide-title">TENHO MARGEM?</h2>
+                <p>
+                    Verifique qual
+                    <span>limite pré-aprovado</span> está disponível para você com as principais instituições
+                    financeiras do País
+                </p>
+            </ion-slide>
+
+            <ion-slide>
+                <img src="assets/img/ica-slidebox-img-2.png" class="slide-image" />
+                <h2 class="slide-title">REDUÇÃO DE TAXAS</h2>
+                <p>
+                    Simule portabilidade, refinanciamento ou quitação do seu contrato. Tudo muito fácil com nossos
+                    <span>consultores
+                        digitais</span>
+                </p>
+            </ion-slide>
+
+            <ion-slide>
+                <img src="assets/img/ica-slidebox-img-3.png" class="slide-image" />
+                <h2 class="slide-title">CONSULTAS PRÁTICAS</h2>
+                <p>
+                    Fechou contrato com a Presença? Receba as
+                    <span>notificações</span> quanto ao andamento e o depósito do valor
+                </p>
+            </ion-slide>
+
+            <ion-slide>
+                <img src="assets/img/ica-slidebox-img-4.png" class="slide-image" />
+                <h2 class="slide-title">ATENDIMENTO 24H</h2>
+                <p>
+                    Surgiu um imprevisto de madrugada e não quer esperar? Podemos ajudar
+                    <span>24h</span> por dia <span>7 dias</span> na semana
+                </p>
+            </ion-slide>
+        </ion-slides>
+    </div>
+</ion-content>

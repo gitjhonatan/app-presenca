@@ -1,0 +1,40 @@
+<ion-header>
+    <div class="header-menu pages">
+        <ion-toolbar>
+            <ion-title class="correct-left-margin">Notificações</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="dismiss()">
+                    <ion-icon name="close"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </div>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh()" pullMax="500">
+        <ion-refresher-content class="black" pullingIcon="arrow-round-down" refreshingSpinner="crescent">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item [id]="p.id" *ngFor="let p of notList.slice().reverse()" (click)="showNotInfos(p)">
+            <div class="list_not unread" [hidden]="p.readed"></div>
+            <div class="list_not read" [hidden]="!p.readed"></div>
+            <ion-label>
+                <h2>{{p.title}}</h2>
+                <p>{{p.body}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+    <div class="no-notification" *ngIf="(notList.length == 0)">
+        <p class="text-top">
+            Hm, parece que você não tem nenhuma notificação 🤔
+        </p>
+        <p>
+            Mas não se preocupa, quando tiver alguma novidade a gente te avisa 😉
+        </p>
+    </div>
+
+</ion-content>

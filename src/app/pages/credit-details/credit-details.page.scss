@@ -1,0 +1,152 @@
+$gradient: linear-gradient(90deg, #be4e00, #e19505);
+
+.custom-card {
+  &.product {
+    padding: 10px 0;
+    .card-title {
+      padding-top: 0;
+    }
+    .item {
+      padding: 15px 0;
+    }
+  }
+  &.total {
+    height: 113px;
+    margin-bottom: 35px;
+  }
+  .card-title .help-icon {
+    margin-left: 7px;
+    font-size: 20px;
+    justify-self: left;
+  }
+}
+
+.custom-button {
+  text-align: center;
+  margin-bottom: 20px;
+  * {
+    width: calc(100% - 40px);
+    color: #fff;
+    background-image: linear-gradient(90deg, #be4e00, #e19505);
+    border-radius: 7px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 10px 30px;
+  }
+}
+
+.nothing-found {
+  padding: 10px 30px !important;
+}
+
+.lock {
+  ion-img {
+    width: 220px;
+    margin: 20px auto;
+  }
+  .lock-grey {
+    color: #777;
+    font-size: 12px;
+    margin-top: -5px;
+  }
+
+  .card-button {
+    margin: 12px auto 12px !important;
+  }
+}
+
+.out {
+  padding: 0 10px 10px;
+  #mt {
+    margin-bottom: 5px !important;
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+  }
+}
+
+.card-salary-increase {
+  background-image: $gradient;
+  height: 76px;
+  margin: 70px 15px 5px;
+  padding: 0 10px;
+  border-radius: 7px;
+
+  .content-salary-increase {
+    display: flex;
+    justify-content: center;
+    .image-salary-increase {
+      max-width: 100px;
+      position: relative;
+      height: 74px;
+      width: 100%;
+      margin-right: 2px;
+      img {
+        max-width: 95%;
+        position: absolute;
+        bottom: -3px;
+      }
+    }
+    .text-salary-increase {
+      align-self: center;
+      color: #fff;
+      .anticipate {
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .salary-increase {
+        display: flex;
+        font-size: 15px;
+        .year {
+          font-weight: 500;
+          font-size: 36px;
+          line-height: 0px;
+          margin-left: 7px;
+        }
+      }
+      .click {
+        font-weight: 300;
+        text-transform: uppercase;
+        font-size: 12.5px;
+        margin: 6px 0;
+      }
+    }
+  }
+}
+
+button {
+  background: #e7f1f3;
+  margin-top: 1em;
+  width: 100%;
+  font-size: 15px;
+  padding: 5px 0;
+}
+
+.options-card {
+  background-color: #f8f8f8;
+  margin-bottom: 23px;
+  text-align: center;
+  padding: 10px;
+  p {
+    color: #005468;
+    margin: 0 13px;
+  }
+  .options {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    .option {
+      font-size: 13px;
+      background-color: #fff;
+      border-radius: 9px;
+      text-align: center;
+      padding-top: 25px;
+      box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2);
+    }
+  }
+  h4 {
+    color: #be4e00;
+    font-weight: bold;
+    margin: 8px auto 35px;
+  }
+}

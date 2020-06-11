@@ -1,0 +1,163 @@
+<ion-header no-border>
+    <div class="header-menu">
+        <div class="custom-toolbar">
+            <ion-menu-button></ion-menu-button>
+            <div class="logo-top">
+                <img src="./assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" routerLink="/home" routerDirection="forward">
+                <img src="./assets/icons/icon-home.svg">
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content fullscreen>
+
+    <ion-slides #slides [options]="slideOpts">
+
+        <!-- <ion-slide>
+            <div class="center">
+                <div class="container">
+
+                    <p class="title-top">Para prosseguirmos, nos envie 2 demonstrativos de pagamento:</p>
+
+                    <div class="container-2">
+
+                        file left
+                        <div class="populate">
+                            <ion-input capture (change)="updateFile('statement1',$event)" class="custom-input"
+                                type="file" accept="image/*,application/pdf"></ion-input>
+                            <ion-img class="img-in" src="assets/img/add-files.svg" id="statement1">
+                            </ion-img>
+                            <p>Último Demonstrativo</p>
+                        </div>
+
+                        file right
+                        <div class="populate">
+                            <ion-input capture (change)="updateFile('statement2',$event)" class="custom-input"
+                                type="file" accept="image/*, application/pdf"></ion-input>
+                            <ion-img class="img-in" src="assets/img/add-files.svg" id="statement2"></ion-img>
+                            <p>Penúltimo Demonstrativo</p>
+                        </div>
+
+                    </div>
+                    <p class="lightp">Arquivos aceitos: imagem ou PDF</p>
+
+                    <button class="custom-buttom ion-activatable" [disabled]="buttonStatement1" (click)="slideNext()">
+                        Enviar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+
+                </div>
+            </div>
+        </ion-slide> -->
+
+        <!-- <ion-slide>
+            <div class="center">
+                <div class="container">
+
+                    <p class="title-top">Agora envie 2 extratos da Conta Corrente:
+                    </p>
+                    <p class="lightp">Precisamos que conste nome, número da agência, número
+                        da conta corrente e <strong>salário</strong></p>
+
+                    <div class="container-2">
+
+                        file left
+                        <div class="populate">
+                            <ion-input capture (change)="updateFile('extract1',$event)" class="custom-input" type="file"
+                                accept="image/*,application/pdf"></ion-input>
+                            <ion-img class="img-in" src="assets/img/add-files.svg" id="extract1">
+                            </ion-img>
+                            <p>Último Salário</p>
+                        </div>
+
+                        file right
+                        <div class="populate">
+                            <ion-input capture (change)="updateFile('extract2',$event)" class="custom-input" type="file"
+                                accept="image/*, application/pdf"></ion-input>
+                            <ion-img class="img-in" src="assets/img/add-files.svg" id="extract2"></ion-img>
+                            <p>Penúltimo Salário</p>
+                        </div>
+
+                    </div>
+                    <p class="lightp">Arquivos aceitos: imagem ou PDF</p>
+
+                    <button class="custom-buttom ion-activatable" [disabled]="buttonStatement2" (click)="slideNext()">
+                        Enviar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+
+                </div>
+            </div>
+        </ion-slide> -->
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Qual o seu telefone com DDD para contato?
+                    </div>
+
+                    <div style="color: #fff9;">
+                        <ion-input class="input-phone" (ionInput)="phoneValidate($event)" id="phoneinput"
+                            placeholder="(12) 91234-1234" type="text" [brmasker]="{'phone':true}">
+                        </ion-input>
+                    </div>
+
+                    <button class="custom-buttom" [disabled]="phonebuttom" (click)="send()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Agora, seu e-mail por favor
+                    </div>
+
+                    <div style="color: #fff9;">
+                        <ion-input class="input-phone" (ionInput)="phoneValidate($event)" id="phoneinput"
+                            placeholder="(12) 91234-1234" type="text" [brmasker]="{'phone':true}">
+                        </ion-input>
+                    </div>
+
+                    <button class="custom-buttom" [disabled]="phonebuttom" (click)="send()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+
+                    <div class="subtitle">
+                        Enviando informações...
+                    </div>
+                    <img class="spinner" src="../../../assets/icons/spinner-white.svg">
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Tudo certo!
+                    </div>
+                    <img class="img-wait" src="../../../assets/img/files.svg">
+                    <div class="subtitle">
+                        Estamos analisando seu pedido e assim que concluído você será notificado!
+                    </div>
+                    <button class="custom-buttom" style="margin-top: 36px!important;" routerLink="/home" routerDirection="forward"> Tela Inicial</button>
+                </div>
+            </div>
+        </ion-slide>
+
+    </ion-slides>
+</ion-content>

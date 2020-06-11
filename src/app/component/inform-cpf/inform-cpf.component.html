@@ -1,0 +1,26 @@
+<div *ngIf="option=='dont-inform'" class="container">
+    <p>
+        Se você informa seu CPF, conseguimos oferecer <strong>taxas menores</strong>
+    </p>
+    <div class="buttons">
+        <button id="inform" class="ion-activatable" (click)="close('inform')">
+			Informar<ion-ripple-effect></ion-ripple-effect>
+		</button>
+        <button class="ion-activatable" (click)="close('dont-inform')">
+			Avançar sem CPF<ion-ripple-effect></ion-ripple-effect>
+		</button>
+    </div>
+</div>
+<div *ngIf="option=='why-cpf'" class="container">
+    <p>
+        Seu CPF é necessário para que possamos orçar a melhor proposta com as melhores taxas de acordo com o seu perfil exato!
+    </p>
+    <p>
+        Não se preocupe, tanto seu CPF quanto seus demais dados serão mantidos em completo sigilo, não sendo repassados a terceiros sob nenhuma hipótese.
+    </p>
+    <div class="buttons">
+        <button id="inform" class="ion-activatable" (click)="close('')">
+			Ok<ion-ripple-effect></ion-ripple-effect>
+		</button>
+    </div>
+</div>

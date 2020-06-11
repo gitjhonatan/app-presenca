@@ -1,0 +1,58 @@
+<ion-header>
+    <div class="header-menu">
+        <div class="custom-toolbar">
+            <ion-menu-button></ion-menu-button>
+            <div class="logo-top">
+                <img src="./assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" routerLink="/home" routerDirection="forward">
+                <img src="./assets/icons/icon-home.svg">
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content>
+
+    <div class="center">
+
+        <div class="custom-card">
+
+            <div class="card-title">
+                Minhas informações
+            </div>
+
+            <form #updateForm="ngForm" novalidate class="custom-form">
+
+                <ion-input placeholder="Nome Completo" [(ngModel)]="userInfos.name" name="full_name" type="text" required>
+                </ion-input>
+
+                <ion-text color="danger">
+                    <p [hidden]="userInfos?.name || !submitted">
+                        Por favor, insira o seu nome
+                    </p>
+                </ion-text>
+
+                <ion-input placeholder="CPF" [disabled]="!editCPF" id="CPFinput" [(ngModel)]="userInfos.cpf" name="cpf" (ionInput)="testCPF()" type="text" [brmasker]="{mask: '000.000.000-00', type:'num', len:14}">
+                </ion-input>
+
+                <ion-text color="danger">
+                    <p [hidden]="!cpfIncomplete || !submitted || cpfIsValid" class="ion-padding-start">
+                        Por favor, insira o seu CPF
+                    </p>
+                    <p [hidden]="cpfIsValid || cpfIncomplete" class="ion-padding-start">
+                        Por favor, insira um CPF válido
+                    </p>
+                </ion-text>
+
+                <ion-input placeholder="E-mail" [(ngModel)]="userInfos.email" name="email" type="email" #email="ngModel">
+                </ion-input>
+
+                <div class="card-button" (click)="onSendInfos(updateForm)">
+                    Salvar
+                </div>
+
+            </form>
+        </div>
+    </div>
+</ion-content>

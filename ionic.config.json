@@ -1,0 +1,8 @@
+{
+  "name": "APP Presença",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "f37863a1"
+}

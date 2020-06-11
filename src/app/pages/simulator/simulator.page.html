@@ -1,0 +1,289 @@
+<ion-header no-border>
+    <div class="header-menu">
+        <div class="custom-toolbar">
+            <ion-menu-button></ion-menu-button>
+            <div class="logo-top">
+                <img src="./assets/img/logo-top.svg">
+            </div>
+            <div class="icon-option" routerLink="/home" routerDirection="forward">
+                <img src="./assets/icons/icon-home.svg">
+            </div>
+        </div>
+    </div>
+</ion-header>
+
+<ion-content fullscreen>
+
+    <ion-slides #slides [options]="slideOpts">
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="init-text">
+                        Crédito familiar para conquistar seus objetivos
+                    </div>
+                    <!-- TODO: MUDAR PRA BRANCO  -->
+                    <button class="custom-buttom ion-activatable" (click)="slideNext()">
+                        Simular empréstimo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Qual o seu perfil?
+                    </div>
+                    <div class="options" (click)="selectThis('profile',$event)">
+                        <div class="option ion-activatable" *ngFor="let p of simulationOptions"
+                            [class.selected]="simulation_infos?.profile==p">
+                            {{p}} <span *ngIf="profiles[p]?.inactive" class="inactive">(em breve)</span>
+                            <ion-ripple-effect></ion-ripple-effect>
+                        </div>
+                    </div>
+                    <button [disabled]="!simulation_infos?.profile" class="custom-buttom ion-activatable"
+                        (click)="slideNext()">
+                        Próximo
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide id="ele" *ngIf="profiles[simulation_infos?.profile]?.categories.length>0">
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        {{profiles[simulation_infos?.profile]?.categories_title}}
+                    </div>
+                    <div class="options" (click)="selectThis('category',$event)">
+                        <div class="option" style="font-size: 17px !important;"
+                            *ngFor="let p of profiles[simulation_infos.profile].categories"
+                            [class.selected]="simulation_infos?.category==p">
+                            {{p}} <span *ngIf="p == 'Servidor Federal'" class="inactive">(em breve)</span>
+                        </div>
+                    </div>
+                    <div *ngIf="profiles[simulation_infos?.profile]?.sub_categories" class="sub options"
+                        (click)="selectThis('sub_category',$event)">
+                        <div class="sub-option" *ngFor="let p of profiles[simulation_infos.profile].sub_categories"
+                            [class.selected]="simulation_infos?.sub_category==p">
+                            {{p}}
+                        </div>
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!simulation_infos?.category" class="custom-buttom ion-activatable"
+                        (click)="pushPage(simulation_infos?.category)">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Qual a quantia que você precisa?
+                    </div>
+                    <div class="subtitle">
+                        {{currency(simulation_infos.money_needed)}}
+                    </div>
+                    <div class="range">
+                        <ion-range mode="ios" name="money_needed" [value]="simulation_infos.money_needed" min="500"
+                            step="250" max="50000" color="light" (ionChange)="selectThis('money_needed',$event)">
+                        </ion-range>
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!simulation_infos?.money_needed" class="custom-buttom ion-activatable"
+                        (click)="slideNext()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Qual o seu nome?
+                    </div>
+                    <div class="custom-input">
+                        <ion-input placeholder="Digite aqui" [(ngModel)]="userInfos.name" name="full_name" type="text">
+                        </ion-input>
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!userInfos?.name" class="custom-buttom ion-activatable" (click)="slideNext()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Valor aproximado da sua renda:
+                    </div>
+                    <div class="subtitle">
+                        <span *ngIf="simulation_infos.income==7000">+ </span> {{currency(simulation_infos.income)}}
+                    </div>
+                    <div class="range">
+                        <ion-range mode="ios" name="income" [value]="simulation_infos.income" min="500" step="5"
+                            max="7000" color="light" (ionChange)="selectThis('income',$event)">
+                        </ion-range>
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!simulation_infos?.income" class="custom-buttom ion-activatable"
+                        (click)="slideNext()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Qual o seu CPF?
+                    </div>
+                    <div class="custom-input">
+                        <ion-input #cpfInput placeholder="Digite aqui" [disabled]="!editCPF" [(ngModel)]="userInfos.cpf"
+                            name="cpf" type="text" (ionInput)="testCPF($event)"
+                            [brmasker]="{mask: '000.000.000-00', type:'num', len:14}">
+                        </ion-input>
+                        <!-- [disabled]="!editCPF" -->
+
+                        <ion-text>
+                            <p [hidden]="!cpfIncomplete || !submitted || cpfIsValid" class="ion-padding-start">
+                                Por favor, insira o seu CPF
+                            </p>
+                            <p [hidden]="cpfIsValid || cpfIncomplete" class="ion-padding-start">
+                                Por favor, insira um CPF válido
+                            </p>
+                        </ion-text>
+
+                        <div class="dont-inform-cpf" *ngIf="!userInfos?.cpf"
+                            (click)="presentPopover($event,'dont-inform')">
+                            Não quero informar meu CPF
+                        </div>
+                        <!-- *ngIf="!userInfos?.cpf" -->
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="cpfIncomplete || !cpfIsValid" class="custom-buttom ion-activatable"
+                        (click)="slideNext()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+
+                    <div class="why-cpf" (click)="presentPopover($event,'why-cpf')">
+                        <div class="help-icon">
+                            <ion-icon color='light' name="help-circle">
+                            </ion-icon>
+                        </div>
+                        Porquê pedimos seu CPF?
+                    </div>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide *ngIf="userInfos?.cpf">
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Quando você nasceu?
+                    </div>
+                    <div class="custom-input">
+                        <ion-input [(ngModel)]="simulation_infos.birth" type="date" name="birth">
+                        </ion-input>
+                    </div>
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!simulation_infos?.birth" class="custom-buttom ion-activatable"
+                        (click)="slideNext()">
+                        Próximo<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Você possui algum empréstimo ativo?
+                    </div>
+                    <div class="sub options minor" (click)="selectThis('hasLoan',$event)">
+                        <div class="sub-option minor ion-activatable"
+                            [class.selected]="simulation_infos?.hasLoans==true">
+                            Sim
+                            <ion-ripple-effect></ion-ripple-effect>
+                        </div>
+                        <div class="sub-option minor ion-activatable"
+                            [class.selected]="simulation_infos?.hasLoans==false">
+                            Não
+                            <ion-ripple-effect></ion-ripple-effect>
+                        </div>
+                    </div>
+
+                    <div class="custom-input" *ngFor="let p of simulation_infos.activeLoans; let i = index">
+                        <ion-item lines="none">
+                            <label>R$</label>
+                            <ion-input [placeholder]="'Valor do desconto do '+(i+1)+'º empréstimo'"
+                                [brmasker]="{money: true, thousand: '.'}"
+                                [(ngModel)]="simulation_infos.activeLoans[i].text" name="loan" type="text">
+                            </ion-input>
+                            <ion-icon *ngIf="i>0" name="close" (click)="eraseThisLoan(i)"></ion-icon>
+                        </ion-item>
+                    </div>
+                    <div class="add-loan"
+                        *ngIf="(simulation_infos.activeLoans.length > 0&&simulation_infos.activeLoans.length < 5)"
+                        (click)="addLoan()">
+                        Adicionar mais um empréstimo
+                    </div>
+
+                    <button class="custom-buttom ion-activatable" (click)="slidePrev()">
+                        Voltar<ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                    <button [disabled]="!validateLoans()" class="custom-buttom ion-activatable" (click)="simulate()">
+                        <span>
+                            Próximo
+                        </span>
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </button>
+                </div>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="center">
+                <div class="container">
+                    <div class="title">
+                        Um momento...
+                    </div>
+                    <div class="subtitle">
+                        Estamos efetuando a sua simulação, esta operação pode demorar até 120 segundos.
+                    </div>
+                    <img class="spinner" src="../../../assets/icons/spinner-white.svg">
+                </div>
+            </div>
+        </ion-slide>
+
+
+    </ion-slides>
+</ion-content>
